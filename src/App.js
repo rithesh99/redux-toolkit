@@ -1,25 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './Header';
+import AddUser from './AddUser';
+import RemoveUser from './RemoveUser';
+import Users from './Users';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './store/store';
+import Count from './Count';
+import Hooks from './Hooks';
 
-function App() {
+export default function App() {
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Hooks />
+          <Header />
+          <AddUser />
+          <RemoveUser />
+          <Users />
+          <Count />
+        </PersistGate>
+      </Provider>
     </div>
   );
 }
-
-export default App;
